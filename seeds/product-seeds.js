@@ -1,3 +1,4 @@
+const { DataTypes } = require('sequelize/types');
 const { Product } = require('../models');
 
 const productData = [
