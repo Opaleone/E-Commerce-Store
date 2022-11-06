@@ -23,7 +23,7 @@ router.get('/:id', async (req, res) => {
   // find a single tag by its `id`
   // be sure to include its associated Product data
   try {
-    const singleTag = Tag.findByPk(req.params.id, {
+    const singleTag = await Tag.findByPk(req.params.id, {
       include: [{
         model: Product
       }
@@ -39,7 +39,7 @@ router.get('/:id', async (req, res) => {
 router.post('/', async (req, res) => {
   // create a new tag
   try {
-    const newTag = Tag.create({
+    const newTag = await Tag.create({
       id: req.body.id,
       tag_name: req.body.tag_name,
     })
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
 router.put('/:id', async (req, res) => {
   // update a tag's name by its `id` value
   try {
-    const tagUpdate = Tag.update(req.body, {
+    const tagUpdate = await Tag.update(req.body, {
       where: {
         id: req.params.id
       }
@@ -78,7 +78,7 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
   // delete on tag by its `id` value
   try {
-    const tagDestroy = Tag.destroy({
+    const tagDestroy = await Tag.destroy({
       where: {
         id: req.params.id
       }
