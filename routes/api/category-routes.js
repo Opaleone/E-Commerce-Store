@@ -14,7 +14,7 @@ router.get('/', async (req, res) => {
     })
 
     if (!catData[0]) {
-      res.status(404).json({message: 'No categories found!'})
+      return res.status(404).json({message: 'No categories found!'})
     }
 
     res.status(200).json(catData)
@@ -33,6 +33,10 @@ router.get('/:id', async (req, res) => {
       ]
     })
 
+    if (!singleCat) {
+      return res.status(404).json({message: `No category found with that ID`})
+    }
+
     res.status(200).json(singleCat)
   } catch (err) {
     res.status(500).json(err)
@@ -41,6 +45,13 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
   // create a new category
+
+  /* req.body should look like this
+    {
+      "category_name": "electronics"
+    }
+  */
+
   try {
     const newCat = await Category.create({
       id: req.body.id,
@@ -65,8 +76,7 @@ router.put('/:id', async (req, res) => {
     })
 
     if(!catUpdate[0]) {
-      res.status(404).json({message: 'No data found'})
-      return
+      return res.status(404).json({message: 'No data found'})
     }
 
     res.status(200).json(catUpdate)
@@ -84,7 +94,7 @@ router.delete('/:id', async (req, res) => {
       }
     })
 
-    res.status(200).json({message: `${req.params.id} deleted successfully!`}, catDestroy)
+    res.status(200).json({message: `${req.params.id} deleted successfully!`})
   } catch (err) {
     res.status(500).json(err)
   }
