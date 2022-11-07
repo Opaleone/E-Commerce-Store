@@ -20,6 +20,14 @@ Technologies I used to build the backend:
     MySql
     Sequelize
 
+### Examples of this program
+
+>This is a picture demonstrating the program inside of Insomnia
+![Insomnia Demo](./1developCriteria/Assets/Insomnia-demo.png)
+
+>This picture is showing some of the code used to write the backend
+![Code Example](./1developCriteria/Assets/code-preview.png)
+
 ## Usage
 
 Make sure to create and seed your database before this step.
